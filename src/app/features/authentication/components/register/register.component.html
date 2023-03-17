@@ -1,0 +1,50 @@
+<div>
+  <label for="email">Email</label>
+  <input
+    (keyup)="registerUIToggle()"
+    [(ngModel)]="email"
+    class="form-control"
+    id="email"
+    placeholder="john.doe@example.com"
+    type="email"
+  />
+  <label for="password">Password</label>
+  <input
+    (keyup)="registerUIToggle()"
+    [(ngModel)]="password"
+    class="form-control"
+    id="password"
+    type="password"
+  />
+  <label for="re-enter-password">Re-enter Password</label>
+  <input
+    (keyup)="registerUIToggle()"
+    [(ngModel)]="reEnteredPassword"
+    class="form-control"
+    id="re-enter-password"
+    type="password"
+  />
+  <div class="terms-and-conditions">
+    <input
+      (change)="registerUIToggle()"
+      (keyup)="registerUIToggle()"
+      [(ngModel)]="termsAndConditions"
+      class="form-check-input"
+      id="flexCheckDefault"
+      type="checkbox"
+      value=""
+    />
+    <label for="flexCheckDefault" id="tnc-label">
+      &nbsp;I agree to the NewsHub's <span>Terms of Service</span>
+    </label>
+  </div>
+  <button
+    (click)="validator()"
+    [ngClass]="{'disabled': btnDisabled}"
+    class="btn btn-danger"
+    style.background-color="{{ primaryColor }}"
+  >
+    Register
+  </button>
+
+</div>

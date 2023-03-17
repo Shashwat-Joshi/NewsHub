@@ -5,9 +5,9 @@
   flex-direction: row;
   .logo-and-image {
     width: 35%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    .wrapper {
+      height: 100vh;
+    }
   }
   .sign-in-section {
     background-color: white;

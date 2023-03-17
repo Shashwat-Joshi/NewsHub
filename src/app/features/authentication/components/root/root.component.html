@@ -1,14 +1,30 @@
 <div class="sign-in-section">
-  <div class="logo-and-image" style.background-image="url({{imageUrl}})"></div>
+  <div class="logo-and-image">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let image of carouselImages">
+        <div class="wrapper">
+          <img [src]="image" alt="Random first slide">
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
   <div class="sign-in-section">
-    <div class="content">
+    <div *ngIf="showSignIn" class="content">
       <h2>Welcome to The <app-logo></app-logo>,<br/>Sign In to Continue</h2>
       <p>
         Don't have an account?
-        <span>Create an account</span><br/>
+        <span (click)="showSignIn=false">Create an account</span><br/>
         It takes less than a minute
       </p>
       <sign-in-component> </sign-in-component>
+    </div>
+    <div *ngIf="!showSignIn" class="content">
+      <h2>Welcome to The <app-logo></app-logo>,<br/>Register</h2>
+      <p>
+        Already have an account?
+        <span (click)="showSignIn=true">Sign In</span><br/>
+      </p>
+      <register-component></register-component>
     </div>
   </div>
 </div>

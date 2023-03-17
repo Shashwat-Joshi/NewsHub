@@ -1,0 +1,26 @@
+.terms-and-conditions {
+  margin-top: 20px;
+}
+
+#tnc-label {
+  display: inline;
+}
+
+$input-margin: 20px;
+div {
+  label {
+    margin-top: $input-margin;
+    margin-bottom: 8px;
+    span {
+      color: rgba(255, 0, 0, 0.7);
+      font-weight: 500;
+      cursor: pointer;
+    }
+    span:hover {
+      color: red;
+    }
+  }
+  label:last-of-type {
+    margin-top: $input-margin;
+  }
+}
