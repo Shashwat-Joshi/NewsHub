@@ -1,3 +1,36 @@
-.nav-link {
-    color: white;
+.navbar {
+  background-color: #0c0c0c;
+
+  div {
+    .left-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: white;
+    }
+
+    .navbar-brand {
+      color: white;
+
+    }
+
+    .same-width {
+      width: 300px;
+    }
+
+    ul:last-child {
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+      justify-content: end;
+    }
+  }
 }

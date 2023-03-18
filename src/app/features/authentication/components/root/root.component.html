@@ -1,7 +1,7 @@
 <div class="sign-in-section">
   <div class="logo-and-image">
     <ngb-carousel>
-      <ng-template ngbSlide *ngFor="let image of carouselImages">
+      <ng-template *ngFor="let image of carouselImages" ngbSlide>
         <div class="wrapper">
           <img [src]="image" alt="Random first slide">
         </div>
@@ -10,16 +10,22 @@
   </div>
   <div class="sign-in-section">
     <div *ngIf="showSignIn" class="content">
-      <h2>Welcome to The <app-logo></app-logo>,<br/>Sign In to Continue</h2>
+      <h2>Welcome to The
+        <span><app-text-logo></app-text-logo>,</span>
+        <br/>Sign In to Continue
+      </h2>
       <p>
         Don't have an account?
         <span (click)="showSignIn=false">Create an account</span><br/>
         It takes less than a minute
       </p>
-      <sign-in-component> </sign-in-component>
+      <sign-in-component></sign-in-component>
     </div>
     <div *ngIf="!showSignIn" class="content">
-      <h2>Welcome to The <app-logo></app-logo>,<br/>Register</h2>
+      <h2>Welcome to The
+        <span><app-text-logo></app-text-logo>,</span>
+        <br/>Register
+      </h2>
       <p>
         Already have an account?
         <span (click)="showSignIn=true">Sign In</span><br/>
@@ -28,3 +34,4 @@
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>
