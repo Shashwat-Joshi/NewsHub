@@ -12,6 +12,8 @@ import { AppSettings } from '../../core/constants/settings';
 })
 export class HomeComponent implements OnInit {
   primaryColor: string = AppSettings.PRIMARY_COLOR;
+  categoryList = AppSettings.newsCategories;
+
   newsList: News[] = [];
   topHeadlines: News[] = [];
   homeArticles: News[] = [];

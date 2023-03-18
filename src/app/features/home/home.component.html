@@ -5,23 +5,73 @@
     height: '74px'
   }"
 ></div>
-<div *ngIf="isLoading" class="loading-ui">
-</div>
+<div *ngIf="isLoading" class="loading-ui"></div>
 <div *ngIf="!isLoading">
-  <div class="carousel-section">
+  <!-- CAROUSELS THAT SHOW THE LATEST NEWS -->
+  <section class="carousel-section">
     <ngb-carousel>
       <ng-template *ngFor="let news of topHeadlines" ngbSlide>
         <div class="wrapper">
-          <img [src]="news.imageUrl" alt="Random first slide">
+          <img [src]="news.imageUrl" alt="Random first slide"/>
         </div>
         <div class="carousel-inner">
-          <h1>{{news.title}}</h1>
-          <h5>- {{news.author}} | {{news.publishedAt | date:'medium'}}</h5>
-          <a href="{{news.url}}" rel="noopener noreferrer" target="_blank">
+          <h1>{{ news.title }}</h1>
+          <h5>
+            - {{ news.author }} | {{ news.publishedAt | date : "medium" }}
+          </h5>
+          <a href="{{ news.url }}">
             <button class="btn btn-danger">Read More</button>
           </a>
         </div>
       </ng-template>
     </ngb-carousel>
-  </div>
+  </section>
+  <!-- CATEGORIES SECTION -->
+  <section class="category-section container-xxl">
+    <h2>Popular Categories</h2>
+    <div class="categories">
+      <a *ngFor="let category of categoryList.slice(0, 3)">
+        <div class="category-card">
+          <div
+            class="category-bg"
+            style.background-image="url(&quot;{{ category.image }}&quot;)"
+          ></div>
+          <h4>{{ category.name }}</h4>
+        </div>
+      </a>
+    </div>
+    <div class="categories" id="categories-row-2">
+      <a *ngFor="let category of categoryList.slice(3)">
+        <div class="category-card">
+          <div
+            class="category-bg"
+            style.background-image="url(&quot;{{ category.image }}&quot;)"
+          ></div>
+          <h4>{{ category.name }}</h4>
+        </div>
+      </a>
+    </div>
+  </section>
+  <!-- TOP HEADLINES SECTION -->
+  <section class="top-headlines-section">
+    <div class="container-xxl">
+      <h2>Top Headlines</h2>
+      <div class="news-cards">
+        <a *ngFor="let article of homeArticles" [href]="article.url">
+          <div class="news-card">
+            <div>
+              <img (error)="article.imageUrl='https://i.pinimg.com/564x/74/89/44/748944eb4559a3db7eb5058d29e5887c.jpg'"
+                   [src]="article.imageUrl" alt="News Banner"/>
+              <h5>{{ article.title }}</h5>
+              <p>{{ article.description }}</p>
+            </div>
+            <div>
+              <div class="verticle-line"></div>
+              <p>{{article.author}} | {{article.publishedAt | date:'short'}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 </div>

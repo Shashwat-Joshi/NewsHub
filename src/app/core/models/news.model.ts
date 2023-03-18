@@ -25,7 +25,9 @@ export class News {
   static fromJson(json: any): News {
     let author: string = json.source.name ?? 'Unknown';
     // TODO: SHOW DEFAULT IMAGE
-    let imageUrl: string = json.urlToImage ?? '';
+    let imageUrl: string =
+      json.urlToImage ??
+      'https://i.pinimg.com/564x/74/89/44/748944eb4559a3db7eb5058d29e5887c.jpg';
     return new News(
       author,
       json.title,
