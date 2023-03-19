@@ -4,6 +4,9 @@ import {
   FieldValidatorsService,
   ValidatorResult,
 } from '../../services/field-validators.service';
+import { User } from '../../../../core/models/user.model';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'register-component',
@@ -13,12 +16,21 @@ import {
 export class RegisterComponent {
   primaryColor: string = AppSettings.PRIMARY_COLOR;
   btnDisabled: boolean = true;
+  showErrorMsg: boolean = false;
+  errorMsg: string = '';
+  showSuccessMsg: boolean = false;
+  isLoading: boolean = false;
 
   // Form Fields for Register
   email: string = '';
   password: string = '';
   reEnteredPassword: string = '';
   termsAndConditions: boolean = false;
+
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
   enableButton() {
     this.btnDisabled = false;
@@ -44,6 +56,8 @@ export class RegisterComponent {
   }
 
   validator() {
+    this.errorMsg = '';
+    this.showErrorMsg = false;
     const result: ValidatorResult = FieldValidatorsService.isRegisterFormValid(
       this.email,
       this.password,
@@ -51,10 +65,33 @@ export class RegisterComponent {
       this.termsAndConditions
     );
     if (result.isValid) {
-      // Create Account
+      // Call Register API
+      this.isLoading = true;
+      this.regesterUser();
     } else {
       // UPDATE UI - SHOW ERROR MESSAGE
-      alert(result.error);
+      this.showError(result.error);
     }
+  }
+
+  showError(msg: string) {
+    this.disableButton();
+    this.errorMsg = msg;
+    this.showErrorMsg = true;
+  }
+
+  private regesterUser() {
+    setTimeout(() => {
+      const user: User = new User(this.email, this.password);
+      this.authService.registerUser(user).subscribe((json) => {
+        if (json === null) {
+          this.showError('409: EMAIL ALREADY IN USE, Please Sign In');
+        }
+        this.isLoading = false;
+        this.email = this.password = this.reEnteredPassword = '';
+        this.termsAndConditions = false;
+        this.showSuccessMsg = true;
+      });
+    }, 2000);
   }
 }

@@ -35,11 +35,15 @@ export class FieldValidatorsService {
     return new ValidatorResult(true, '');
   }
 
+  static isSignInFormValid(email: string): ValidatorResult {
+    return this.isValidEmail(email);
+  }
+
   private static isValidEmail(email: string): ValidatorResult {
     const EMAIL_REGEX_PATTERN: string =
       '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$';
     const isValid: boolean = RegExp(EMAIL_REGEX_PATTERN).test(email);
-    const error: string = isValid ? '' : 'Email address is invalid';
+    const error: string = isValid ? '' : 'ERROR: Email address is invalid';
     return new ValidatorResult(isValid, error);
   }
 

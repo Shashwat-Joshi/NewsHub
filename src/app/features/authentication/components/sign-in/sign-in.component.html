@@ -1,16 +1,30 @@
+<p *ngIf="showErrorMsg" class="error-label">{{errorMsg}}</p>
 <div>
   <label for="email">Email</label>
   <input
+    (keyup)="signUIToggle()"
+    [(ngModel)]="email"
     class="form-control"
     id="email"
     placeholder="john.doe@example.com"
     type="email"
-  >
+  />
   <label for="password">Password</label>
   <input
+    (keyup)="signUIToggle()"
+    [(ngModel)]="password"
     class="form-control"
     id="password"
-    type="password">
+    type="password"
+  />
   <p id="forgot-password-cta">Forgot Password?</p>
-  <button class="btn btn-danger" routerLink="/home" style.background-color="{{primaryColor}}">Sign In</button>
+  <button
+    (click)="validator()"
+    [ngClass]="{ disabled: (btnDisabled || isLoading) }"
+    class="btn btn-danger"
+    style.background-color="{{ primaryColor }}"
+  >
+    <span *ngIf="isLoading">Please Wait...</span>
+    <span *ngIf="!isLoading">Sign In</span>
+  </button>
 </div>

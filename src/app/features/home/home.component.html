@@ -30,7 +30,7 @@
   <section class="category-section container-xxl">
     <h2>Popular Categories</h2>
     <div class="categories">
-      <a *ngFor="let category of categoryList.slice(0, 3)">
+      <a *ngFor="let category of categoryList.slice(0, 3)" [routerLink]="category.route">
         <div class="category-card">
           <div
             class="category-bg"
@@ -41,7 +41,7 @@
       </a>
     </div>
     <div class="categories" id="categories-row-2">
-      <a *ngFor="let category of categoryList.slice(3)">
+      <a *ngFor="let category of categoryList.slice(3)" [routerLink]="category.route">
         <div class="category-card">
           <div
             class="category-bg"

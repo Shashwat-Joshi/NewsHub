@@ -1,3 +1,8 @@
+<link href="../sign-in/sign-in.component.scss" rel="stylesheet"/>
+<p *ngIf="showErrorMsg" class="error-label">{{ errorMsg }}</p>
+<p *ngIf="showSuccessMsg" class="success-label">
+  Account created successfully, Please Sign In
+</p>
 <div>
   <label for="email">Email</label>
   <input
@@ -40,11 +45,11 @@
   </div>
   <button
     (click)="validator()"
-    [ngClass]="{'disabled': btnDisabled}"
+    [ngClass]="{ disabled: btnDisabled || isLoading }"
     class="btn btn-danger"
     style.background-color="{{ primaryColor }}"
   >
-    Register
+    <span *ngIf="isLoading">Creating Account...</span>
+    <span *ngIf="!isLoading">Register</span>
   </button>
-
 </div>
