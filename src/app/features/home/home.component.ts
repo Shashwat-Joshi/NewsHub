@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   isLoading: boolean = true;
 
   constructor(private newsService: NewsService, config: NgbCarouselConfig) {
-    config.interval = 7000;
+    config.interval = 6000;
     config.keyboard = true;
     config.pauseOnHover = false;
     config.pauseOnFocus = false;

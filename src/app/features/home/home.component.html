@@ -2,7 +2,7 @@
 <div
   [ngStyle]="{
     width: '100%',
-    height: '74px'
+    height: '60px'
   }"
 ></div>
 <div *ngIf="isLoading" class="loading-ui"></div>
@@ -34,7 +34,7 @@
         <div class="category-card">
           <div
             class="category-bg"
-            style.background-image="url(&quot;{{ category.image }}&quot;)"
+            style.background-image="url({{ category.image }})"
           ></div>
           <h4>{{ category.name }}</h4>
         </div>
@@ -45,7 +45,7 @@
         <div class="category-card">
           <div
             class="category-bg"
-            style.background-image="url(&quot;{{ category.image }}&quot;)"
+            style.background-image="url({{ category.image }})"
           ></div>
           <h4>{{ category.name }}</h4>
         </div>
@@ -60,14 +60,25 @@
         <a *ngFor="let article of homeArticles" [href]="article.url">
           <div class="news-card">
             <div>
-              <img (error)="article.imageUrl='https://i.pinimg.com/564x/74/89/44/748944eb4559a3db7eb5058d29e5887c.jpg'"
-                   [src]="article.imageUrl" alt="News Banner"/>
+              <div class="img-div">
+                <img
+                  (error)="
+                  article.imageUrl =
+                    'https://i.pinimg.com/564x/74/89/44/748944eb4559a3db7eb5058d29e5887c.jpg'
+                "
+                  [src]="article.imageUrl"
+                  alt="News Banner"
+                />
+              </div>
               <h5>{{ article.title }}</h5>
-              <p>{{ article.description }}</p>
+              <p>{{ article.description | shorten }}</p>
             </div>
             <div>
               <div class="verticle-line"></div>
-              <p>{{article.author}} | {{article.publishedAt | date:'short'}}</p>
+              <p>
+                {{ article.author }} |
+                {{ article.publishedAt | date : "short" }}
+              </p>
             </div>
           </div>
         </a>
@@ -75,3 +86,4 @@
     </div>
   </section>
 </div>
+<app-layout-footer></app-layout-footer>
