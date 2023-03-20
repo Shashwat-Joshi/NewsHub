@@ -24,7 +24,6 @@ export class ApiService {
 
   post(baseUrl: string, path: string, body: string) {
     const url = `${baseUrl}${path}`;
-    alert(url);
     let headers = new HttpHeaders();
     headers = headers.set('content-type', 'application/json');
     return this.http
