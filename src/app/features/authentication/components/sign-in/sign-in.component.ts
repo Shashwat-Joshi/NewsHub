@@ -52,6 +52,7 @@ export class SignInComponent {
     if (result.isValid) {
       // MAKE API CALL
       this.isLoading = true;
+      this.router.navigate(['/home']);
       this.signIn();
     } else {
       // UPDATE UI - SHOW ERROR MESSAGE
