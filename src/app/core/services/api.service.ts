@@ -26,6 +26,12 @@ export class ApiService {
     const url = `${baseUrl}${path}`;
     let headers = new HttpHeaders();
     headers = headers.set('content-type', 'application/json');
+    headers.set('Access-Control-Allow-Origin', '*');
+    headers.set('Access-Control-Allow-Methods', 'DELETE, POST, GET, OPTIONS');
+    headers.set(
+      'Access-Control-Allow-Headers',
+      'Content-Type, Authorization, X-Requested-With'
+    );
     return this.http
       .post(url, body, { headers })
       .pipe(catchError(this.formatErrors));
