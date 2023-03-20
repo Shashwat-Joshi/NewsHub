@@ -12,7 +12,14 @@
     <ngb-carousel>
       <ng-template *ngFor="let news of topHeadlines" ngbSlide>
         <div class="wrapper">
-          <img [src]="news.imageUrl" alt="Random first slide"/>
+          <img
+            [src]="news.imageUrl"
+            (error)="
+              news.imageUrl =
+                'https://i.pinimg.com/564x/74/89/44/748944eb4559a3db7eb5058d29e5887c.jpg'
+            "
+            alt="Random first slide"
+          />
         </div>
         <div class="carousel-inner">
           <h1>{{ news.title }}</h1>
@@ -30,7 +37,10 @@
   <section class="category-section container-xxl">
     <h2>Popular Categories</h2>
     <div class="categories">
-      <a *ngFor="let category of categoryList.slice(0, 3)" [routerLink]="category.route">
+      <a
+        *ngFor="let category of categoryList.slice(0, 3)"
+        [routerLink]="category.route"
+      >
         <div class="category-card">
           <div
             class="category-bg"
@@ -41,7 +51,10 @@
       </a>
     </div>
     <div class="categories" id="categories-row-2">
-      <a *ngFor="let category of categoryList.slice(3)" [routerLink]="category.route">
+      <a
+        *ngFor="let category of categoryList.slice(3)"
+        [routerLink]="category.route"
+      >
         <div class="category-card">
           <div
             class="category-bg"
@@ -63,9 +76,9 @@
               <div class="img-div">
                 <img
                   (error)="
-                  article.imageUrl =
-                    'https://i.pinimg.com/564x/74/89/44/748944eb4559a3db7eb5058d29e5887c.jpg'
-                "
+                    article.imageUrl =
+                      'https://i.pinimg.com/564x/74/89/44/748944eb4559a3db7eb5058d29e5887c.jpg'
+                  "
                   [src]="article.imageUrl"
                   alt="News Banner"
                 />

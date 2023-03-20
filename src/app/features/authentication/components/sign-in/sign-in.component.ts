@@ -3,6 +3,10 @@ import { AppSettings } from '../../../../core/constants/settings';
 import { AuthenticationService } from '../../services/authentication.service';
 import { User } from '../../../../core/models/user.model';
 import { Router } from '@angular/router';
+import {
+  FieldValidatorsService,
+  ValidatorResult,
+} from '../../services/field-validators.service';
 
 @Component({
   selector: 'sign-in-component',
@@ -42,18 +46,20 @@ export class SignInComponent {
   validator() {
     this.errorMsg = '';
     this.showErrorMsg = false;
-    this.signIn();
-
-    // const result: ValidatorResult = FieldValidatorsService.isSignInFormValid(
-    //   this.email
-    // );
-    // if (result.isValid) {
-    //   // MAKE API CALL
-    //   this.isLoading = true;
-    // } else {
-    //   // UPDATE UI - SHOW ERROR MESSAGE
-    //   this.showError(result.error);
-    // }
+    // if (this.email === 'admin' && this.password === 'admin')
+    //   this.router.navigate(['/home']);
+    // else this.showError('INVALID CREDS: Please try again!');
+    const result: ValidatorResult = FieldValidatorsService.isSignInFormValid(
+      this.email
+    );
+    if (result.isValid) {
+      // MAKE API CALL
+      this.isLoading = true;
+      this.signIn();
+    } else {
+      // UPDATE UI - SHOW ERROR MESSAGE
+      this.showError(result.error);
+    }
   }
 
   showError(msg: string) {
@@ -63,11 +69,8 @@ export class SignInComponent {
   }
 
   private signIn() {
-    const user: User = new User(this.email, this.password);
-    if (user.getEmail === 'admin' && user.getPassword === 'admin') {
-      this.router.navigate(['/home']);
-    }
     setTimeout(() => {
+      const user: User = new User(this.email, this.password);
       this.authService.signIn(user).subscribe((json) => {
         if (json === null) {
           this.showError('404: EMAIL NOT FOUND, Please create an account');

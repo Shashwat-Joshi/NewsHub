@@ -8,6 +8,17 @@ import { catchError, Observable, throwError } from 'rxjs';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  getNews(
+    baseUrl: string,
+    params: HttpParams = new HttpParams(),
+  ): Observable<any> {
+    return this.http
+      .get(`${baseUrl}`, {
+        params: params,
+      })
+      .pipe(catchError(this.formatErrors));
+  }
+
   get(
     baseUrl: string,
     path: string,

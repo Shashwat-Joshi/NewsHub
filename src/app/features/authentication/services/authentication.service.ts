@@ -23,11 +23,11 @@ export class AuthenticationService {
 
   signIn(user: User): Observable<any> {
     const body = JSON.stringify(user);
-    return this.apiService.post(environment.authUrl, '/login', body);
+    return this.apiService.post(environment.baseUrl, '/login', body);
   }
 
   registerUser(user: User): Observable<any> {
     const body = JSON.stringify(user);
-    return this.apiService.post(environment.authUrl, '/register', body);
+    return this.apiService.post(environment.baseUrl, '/register', body);
   }
 }

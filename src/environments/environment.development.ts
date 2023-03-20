@@ -1,6 +1,5 @@
 export const environment = {
   production: false,
-  baseUrl: 'https://newsapi.org/v2',
-  authUrl: 'http://localhost:8080',
-  XApiKey: '75f8bb3e82c746bb9c413ce214a83317',
+  baseUrl: 'http://ec2-3-6-38-204.ap-south-1.compute.amazonaws.com:3000',
+  XApiKey: '44feb67551ab4dcfb1381c5081e08d18',
 };
