@@ -1,11 +1,14 @@
-<app-layout-header></app-layout-header>
-<div
-  [ngStyle]="{
+<div *ngIf="isLoading" class="loading-ui">
+  <img src="https://thumbs.gfycat.com/AdolescentRectangularEthiopianwolf-size_restricted.gif">
+</div>
+
+<app-layout-header *ngIf="!isLoading"></app-layout-header>
+<div *ngIf="!isLoading"
+     [ngStyle]="{
     width: '100%',
     height: '60px'
   }"
 ></div>
-<div *ngIf="isLoading" class="loading-ui"></div>
 <div *ngIf="!isLoading">
   <!-- CAROUSELS THAT SHOW THE LATEST NEWS -->
   <section class="carousel-section">
@@ -13,11 +16,11 @@
       <ng-template *ngFor="let news of topHeadlines" ngbSlide>
         <div class="wrapper">
           <img
-            [src]="news.imageUrl"
             (error)="
               news.imageUrl =
                 'https://i.pinimg.com/564x/74/89/44/748944eb4559a3db7eb5058d29e5887c.jpg'
             "
+            [src]="news.imageUrl"
             alt="Random first slide"
           />
         </div>
@@ -99,4 +102,4 @@
     </div>
   </section>
 </div>
-<app-layout-footer></app-layout-footer>
+<app-layout-footer *ngIf="!isLoading"></app-layout-footer>

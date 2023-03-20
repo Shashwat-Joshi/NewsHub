@@ -7,9 +7,10 @@ import { NgbCarousel, NgbSlide } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from '../core/core.module';
 import { CategoriesModule } from './categories/categories.module';
 import { RouterLink } from '@angular/router';
+import { SubscribeComponent } from './subscribe/subscribe.component';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, SubscribeComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -17,7 +17,7 @@ export class GadgetsComponent implements OnInit {
 
   ngOnInit() {
     this.newsService
-      .getNewsByCategory(this.categoryData.name, false)
+      .getNewsByCategory('Gadgets', false)
       .subscribe((json) => {
         this.articles = json.articles.map((article: any) =>
           News.fromJson(article)

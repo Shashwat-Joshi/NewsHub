@@ -46,9 +46,6 @@ export class SignInComponent {
   validator() {
     this.errorMsg = '';
     this.showErrorMsg = false;
-    // if (this.email === 'admin' && this.password === 'admin')
-    //   this.router.navigate(['/home']);
-    // else this.showError('INVALID CREDS: Please try again!');
     const result: ValidatorResult = FieldValidatorsService.isSignInFormValid(
       this.email
     );

@@ -8,6 +8,7 @@ import { GadgetsComponent } from './features/categories/gadgets/gadgets.componen
 import { PoliticsComponent } from './features/categories/politics/politics.component';
 import { SportsComponent } from './features/categories/sports/sports.component';
 import { EntertainmentComponent } from './features/categories/entertainment/entertainment.component';
+import { SubscribeComponent } from './features/subscribe/subscribe.component';
 
 const routes: Routes = [
   { path: '', component: SignInModule },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'politics', component: PoliticsComponent },
   { path: 'sports', component: SportsComponent },
   { path: 'entertainment', component: EntertainmentComponent },
+  { path: 'subscribe', component: SubscribeComponent },
 ];
 
 @NgModule({
