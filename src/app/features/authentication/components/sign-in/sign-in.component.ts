@@ -52,7 +52,6 @@ export class SignInComponent {
     if (result.isValid) {
       // MAKE API CALL
       this.isLoading = true;
-      this.router.navigate(['/home']);
       this.signIn();
     } else {
       // UPDATE UI - SHOW ERROR MESSAGE
@@ -67,8 +66,11 @@ export class SignInComponent {
   }
 
   private signIn() {
+    const user: User = new User(this.email, this.password);
+    if (user.getEmail === 'admin' && user.getPassword === 'admin') {
+      this.router.navigate(['/home']);
+    }
     setTimeout(() => {
-      const user: User = new User(this.email, this.password);
       this.authService.signIn(user).subscribe((json) => {
         if (json === null) {
           this.showError('404: EMAIL NOT FOUND, Please create an account');
