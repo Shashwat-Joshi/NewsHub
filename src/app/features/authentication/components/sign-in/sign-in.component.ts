@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
 import { AppSettings } from '../../../../core/constants/settings';
-import {
-  FieldValidatorsService,
-  ValidatorResult,
-} from '../../services/field-validators.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { User } from '../../../../core/models/user.model';
 import { Router } from '@angular/router';
@@ -46,17 +42,18 @@ export class SignInComponent {
   validator() {
     this.errorMsg = '';
     this.showErrorMsg = false;
-    const result: ValidatorResult = FieldValidatorsService.isSignInFormValid(
-      this.email
-    );
-    if (result.isValid) {
-      // MAKE API CALL
-      this.isLoading = true;
-      this.signIn();
-    } else {
-      // UPDATE UI - SHOW ERROR MESSAGE
-      this.showError(result.error);
-    }
+    this.signIn();
+
+    // const result: ValidatorResult = FieldValidatorsService.isSignInFormValid(
+    //   this.email
+    // );
+    // if (result.isValid) {
+    //   // MAKE API CALL
+    //   this.isLoading = true;
+    // } else {
+    //   // UPDATE UI - SHOW ERROR MESSAGE
+    //   this.showError(result.error);
+    // }
   }
 
   showError(msg: string) {
