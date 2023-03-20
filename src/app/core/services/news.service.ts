@@ -42,6 +42,7 @@ export class NewsService {
       'Access-Control-Allow-Methods',
       'DELETE, POST, GET, OPTIONS'
     );
+
     this.headers.set(
       'Access-Control-Allow-Headers',
       'Content-Type, Authorization, X-Requested-With'
